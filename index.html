@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zamir & Fiil Cümle Kurma Materyali | Dil ve Konuşma Terapisi (DKT)</title>
+  <meta name="description" content="Anaokulu seviyesindeki çocuklar için kişi zamirleri (Ben, Sen, O, Biz) ve geçmiş zaman eylemleri görsel cümle kurma materyali. Dil ve Konuşma Terapisi için PDF olarak dışa aktarılabilir.">
+  
+  <!-- CSS Dosyaları -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="print.css" media="print">
+
+  <!-- Harici Yardımcı Kütüphaneler (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- Arka Plan Görsel Parıltıları -->
+  <div class="bg-decorations">
+    <div class="bg-bubble bubble-1"></div>
+    <div class="bg-bubble bubble-2"></div>
+    <div class="bg-bubble bubble-3"></div>
+  </div>
+
+  <!-- Yazdırma İçin Üst Bilgi (Sadece Print modunda görünür) -->
+  <div class="print-page-header" style="display:none;">
+    <div>
+      <h2>Dil ve Konuşma Terapisi - Cümle Kurma Materyali (Zamir & Eylem)</h2>
+      <p>Renkli Semantik (Colorful Semantics) Yöntemiyle Kişi Zamirleri ve Fiil Çekimleri</p>
+    </div>
+    <div>
+      <p>✂️ Çizgilerden keserek cırt cırtlı pano şeridi olarak kullanabilirsiniz.</p>
+    </div>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Üst Başlık ve Terapist Paneli -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand-section">
+          <div class="brand-icon">🎈</div>
+          <div>
+            <h1 class="brand-title">Zamir & Fiil Cümle Kurma Materyali</h1>
+            <p class="brand-subtitle">Dil ve Konuşma Terapistleri (DKT) & Anaokulu Seviyesi Eğitim Platformu</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button id="btnGuide" class="btn btn-outline" title="Terapist Uygulama Kılavuzu">
+            <span>💡</span> Terapist Rehberi
+          </button>
+          <button id="btnToggleSpeech" class="btn btn-outline" title="Sesli Okumayı Aç/Kapat">
+            <span id="speechIcon">🔊</span> <span id="speechText">Ses Açık</span>
+          </button>
+          <button id="btnPrintDirect" class="btn btn-pdf" title="Tüm Materyali PDF Olarak İndir / Yazdır">
+            <span>🖨️</span> PDF Olarak İndir (36 Cümle)
+          </button>
+        </div>
+      </div>
+
+      <!-- Renk Semantiği (Colorful Semantics) Kuralları -->
+      <div class="semantics-legend">
+        <span class="legend-title">Renk Semantiği Kılavuzu:</span>
+        <div class="legend-item">
+          <span class="legend-dot dot-subject"></span>
+          <span>Özne (KİM?): <strong>Ben, Sen, O, Biz</strong></span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot dot-object"></span>
+          <span>Nesne / Yer (NEYİ? / NEREYE?): <strong>Yemek, Top, Su, Okul, Resim, Mont</strong></span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot dot-verb"></span>
+          <span>Eylem / Fiil (NE YAPTI?): <strong>Yaptım, Attın, Gitti, Yedik...</strong></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Kontroller & Filtreler -->
+    <section class="controls-card no-print">
+      <!-- Görünüm Sekmeleri -->
+      <nav class="nav-tabs">
+        <button class="tab-btn active" data-view="strips">
+          <span>📜</span> Cümle Şeritleri (36 Cümle)
+        </button>
+        <button class="tab-btn" data-view="interactive">
+          <span>🎮</span> İnteraktif Terapi Oyunu
+        </button>
+        <button class="tab-btn" data-view="catalog">
+          <span>🃏</span> Tekil Kart Kataloğu (Flashcard)
+        </button>
+        <button class="tab-btn" data-view="printCenter">
+          <span>🖨️</span> Baskı & Kesim Ayarları
+        </button>
+      </nav>
+
+      <!-- Dinamik Filtre Satırı -->
+      <div class="filter-row">
+        <!-- Eylem Filtreleri -->
+        <div class="filter-group">
+          <span class="filter-label">Eylem Grubu:</span>
+          <div id="categoryChips" class="filter-group">
+            <!-- JS ile doldurulacak -->
+          </div>
+        </div>
+
+        <!-- Zamir Filtreleri -->
+        <div class="filter-group">
+          <span class="filter-label">Kişi Zamiri:</span>
+          <div id="subjectChips" class="filter-group">
+            <!-- JS ile doldurulacak -->
+          </div>
+        </div>
+
+        <!-- Sayaç -->
+        <div class="count-badge" id="filterCount">
+          36 Cümle Gösteriliyor
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. GÖRÜNÜM: CÜMLE ŞERİTLERİ (SENTENCE STRIPS) -->
+    <main id="stripsView" class="view-panel">
+      <div class="strips-grid" id="stripsContainer">
+        <!-- JS ile dinamik olarak 36 cümle şeridi üretilecek -->
+      </div>
+    </main>
+
+    <!-- 2. GÖRÜNÜM: İNTERAKTİF TERAPİ OYUNU -->
+    <section id="interactiveView" class="view-panel" style="display:none;">
+      <div class="interactive-view">
+        <div class="interactive-header">
+          <div>
+            <h2 class="game-title">🎯 Cümleyi Kur & Tamamla!</h2>
+            <p style="color:#64748b;">Doğru kartları sırasıyla seçerek hedef cümleyi tamamla.</p>
+          </div>
+          <div class="game-score-box">
+            <button id="btnNewTarget" class="btn btn-outline">🔄 Yeni Cümle Getir</button>
+            <span class="star-count">⭐ Başarı: <span id="starScore">0</span></span>
+          </div>
+        </div>
+
+        <!-- Hedef Sahne Kutusu -->
+        <div class="game-target-banner">
+          <div>
+            <div style="font-size:0.85rem; text-transform:uppercase; color:#6366f1; font-weight:700;">HEDEF CÜMLE SAHNESİ:</div>
+            <div id="targetSentenceName" class="target-prompt">"Ben resim yaptım"</div>
+            <div id="targetHint" style="font-size:0.9rem; color:#64748b; margin-top:0.2rem;"></div>
+          </div>
+          <button id="btnSpeakTarget" class="btn btn-outline" style="border-color:#c7d2fe;">
+            <span>🔊</span> Dinle
+          </button>
+        </div>
+
+        <!-- Boş Bırakılan Cümle Şeridi (Kutucuklar) -->
+        <div class="drop-slots-container" id="gameSlotsRow">
+          <!-- JS ile doldurulacak -->
+        </div>
+
+        <!-- Kart Seçenekleri Havuzu -->
+        <div class="options-pool">
+          <div class="options-title" id="optionsStepTitle">1. Adım: Özne Kartını Seç (KİM?)</div>
+          <div class="options-cards-row" id="gameOptionsPool">
+            <!-- JS ile seçenek kartları gelecek -->
+          </div>
+        </div>
+
+        <!-- Başarı Mesajı -->
+        <div id="gameSuccessBanner" class="success-banner" style="display:none;">
+          🎉 Harika! Cümleyi doğru kurdun! 🌟
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. GÖRÜNÜM: FLASHCARD / TEKİL KART KATALOĞU -->
+    <section id="catalogView" class="view-panel" style="display:none;">
+      <div style="background:#fff; border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem; border:1px solid #e2e8f0;">
+        <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">🃏 Bireysel Flashcard Kitaplığı (Cırt Cırt Kartlar)</h3>
+        <p style="color:#64748b; font-size:0.92rem;">
+          Terapistin panoya yapıştırması, çocuğun eline alıp incelemesi veya kart eşleme oyunları için tek tek kesilebilir flashcard koleksiyonu.
+        </p>
+      </div>
+      <div class="flashcards-catalog" id="catalogContainer">
+        <!-- JS ile kartlar doldurulacak -->
+      </div>
+    </section>
+
+    <!-- 4. GÖRÜNÜM: BASKI & KESİM MERKEZİ -->
+    <section id="printCenterView" class="view-panel" style="display:none;">
+      <div style="background:#fff; border-radius:var(--radius-lg); padding:2rem; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:1.5rem;">
+        <div>
+          <h2 style="font-size:1.5rem; color:#1e293b;">🖨️ PDF & A4 Baskı Hazırlık Merkezi</h2>
+          <p style="color:#64748b;">
+            Dil ve Konuşma Terapisinde klinik veya ev ödevi amacıyla kullanılmak üzere tüm materyali tek parça halinde PDF yapın.
+          </p>
+        </div>
+
+        <div class="pdf-options-box">
+          <div class="option-card selected" id="optStripPrint">
+            <h4>📜 Cümle Şeritleri Şablonu (Önerilen)</h4>
+            <p>Her A4 sayfasına 3 adet tam hizalı, kesme çizgili ve makas işaretli cümle şeridi yerleştirilir. Cırt cırtlı pano için idealdir.</p>
+          </div>
+          <div class="option-card" id="optFlashcardPrint">
+            <h4>🃏 Bireysel Flashcard Şablonu</h4>
+            <p>Kelimeler ve görseller ayrı ayrı 6x6cm kare kartlar halinde yazdırılır. Eşleme ve sıralama oyunları için uygundur.</p>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <button id="btnGeneratePdfDownload" class="btn btn-pdf" style="font-size:1.05rem; padding:0.8rem 1.6rem;">
+            <span>📥</span> Tek Dosya Olarak PDF İndir (Tüm 36 Cümle)
+          </button>
+          <button id="btnBrowserPrint" class="btn btn-primary" style="font-size:1.05rem; padding:0.8rem 1.6rem;">
+            <span>🖨️</span> Tarayıcı Yazdır / PDF Olarak Kaydet (Yüksek Çözünürlük)
+          </button>
+        </div>
+
+        <div style="background:#f1f5f9; border-radius:var(--radius-md); padding:1rem 1.25rem; font-size:0.9rem; color:#475569;">
+          <strong>💡 Terapist İpucu:</strong> Tarayıcı yazdırma penceresinde <em>"Hedef: PDF Olarak Kaydet"</em>, <em>"Düzen: Dikey"</em> ve <em>"Arka plan grafikleri: AÇIK"</em> seçeneklerini işaretleyiniz. Böylece tüm renk semantiği kodları ve yüksek kaliteli görseller net olarak basılır.
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- TERAPİST REHBERİ MODALI -->
+  <div class="pdf-modal-overlay" id="guideModal">
+    <div class="pdf-modal-content">
+      <div class="pdf-modal-header">
+        <h3 style="font-size:1.3rem; display:flex; align-items:center; gap:0.5rem;">
+          <span>📘</span> Dil ve Konuşma Terapisti Uygulama Rehberi
+        </h3>
+        <button id="btnCloseGuide" class="icon-btn">&times;</button>
+      </div>
+      <div class="pdf-modal-body">
+        <h4 style="color:#4f46e5;">1. Pedagojik Dayanak: Renkli Semantik (Colorful Semantics)</h4>
+        <p style="font-size:0.92rem; color:#475569;">
+          Renkli Semantik, çocukların dilbilgisi yapılarını görsel ve renk kodlarıyla algılamasını sağlayan klinik bir yöntemdir:
+        </p>
+        <ul style="padding-left:1.5rem; font-size:0.9rem; color:#334155; display:flex; flex-direction:column; gap:0.3rem;">
+          <li><strong style="color:#d97706;">Sarı Kutu (Özne - KİM?):</strong> Karakterin kim olduğunu tanımlar (Ben, Sen, O, Biz).</li>
+          <li><strong style="color:#0284c7;">Mavi Kutu (Nesne/Tümleç - NEYİ? / NEREYE?):</strong> Eylemin yöneldiği nesne veya yeri belirtir.</li>
+          <li><strong style="color:#e11d48;">Kırmızı Kutu (Fiil - NE YAPTI?):</strong> Geçmiş zaman ekini (-m, -n, ø, -k) taşır.</li>
+        </ul>
+
+        <h4 style="color:#4f46e5; margin-top:0.5rem;">2. Karakter ve Eylem Tutarlılığı</h4>
+        <p style="font-size:0.92rem; color:#475569;">
+          "Ben resim yaptım" cümlesinde, "Ben" kutucuğundaki kıvırcık saçlı sarı tişörtlü kız çocuğu ("Elif"), "Yaptım" eylem kutucuğunda birebir aynı saç ve kıyafetle boyama yapmaktadır. Bu sayede çocuk zihninde zamir ve şahıs eki eşleşmesini somutlaştırır.
+        </p>
+
+        <h4 style="color:#4f46e5; margin-top:0.5rem;">3. Cırt Cırtlı Cümle Şeridi Uygulaması</h4>
+        <p style="font-size:0.92rem; color:#475569;">
+          PDF çıktısını aldıktan sonra kartları noktalı çizgilerden kesin ve laminasyon (PVC kaplama) yapın. Arkalarına yapışkanlı cırt cırt (velcro) yapıştırarak seanslarda masaüstü şeridinde cümle dizimi çalışın.
+        </p>
+      </div>
+      <div class="pdf-modal-footer">
+        <button id="btnDismissGuide" class="btn btn-primary">Anladım, Teşekkürler</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UYGULAMA MANTIĞI VE VERİLER -->
+  <script src="illustrations.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

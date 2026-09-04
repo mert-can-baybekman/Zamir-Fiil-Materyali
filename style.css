@@ -1,0 +1,926 @@
+/* ==========================================================================
+   ZAMİR & FİİL CÜMLE KURMA MATERYALİ - DİL VE KONUŞMA TERAPİSİ
+   Tasarım Sistemi & Arayüz Stilleri (Renkli Semantik - Colorful Semantics)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  /* Renk Semantiği (DKT Standartları) */
+  --color-subject-bg: #fffbeb;
+  --color-subject-border: #f59e0b;
+  --color-subject-text: #b45309;
+  --color-subject-tag: #fde68a;
+
+  --color-object-bg: #f0f9ff;
+  --color-object-border: #0ea5e9;
+  --color-object-text: #0369a1;
+  --color-object-tag: #bae6fd;
+
+  --color-verb-bg: #fff1f2;
+  --color-verb-border: #f43f5e;
+  --color-verb-text: #be123c;
+  --color-verb-tag: #fecdd3;
+
+  /* Genel Tema Renkleri */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --secondary: #10b981;
+  --border-subtle: #e2e8f0;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.10);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+}
+
+/* Reset & Temel Ayarlar */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Tipografi */
+h1, h2, h3, h4, .brand-title, .strip-card-title, .card-word {
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+}
+
+/* Arka Plan Süsleme Öğeleri */
+.bg-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-bubble {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+}
+
+.bubble-1 {
+  width: 350px;
+  height: 350px;
+  background: #fed7aa;
+  top: -80px;
+  right: -50px;
+}
+
+.bubble-2 {
+  width: 400px;
+  height: 400px;
+  background: #bae6fd;
+  bottom: 50px;
+  left: -80px;
+}
+
+.bubble-3 {
+  width: 300px;
+  height: 300px;
+  background: #fbcfe8;
+  top: 40%;
+  right: 15%;
+}
+
+/* Uygulama Konteyneri */
+.app-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* ==========================================================================
+   Header & Terapist Bilgi Çubuğu
+   ========================================================================== */
+.app-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 2rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-icon {
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, #f59e0b, #ec4899);
+  color: #fff;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
+}
+
+.brand-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+  font-size: 0.92rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Üst Eylem Butonları */
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #ffffff;
+}
+
+.btn-pdf {
+  background: linear-gradient(135deg, #e11d48, #f43f5e);
+  color: #ffffff;
+}
+
+.btn-pdf:hover {
+  box-shadow: 0 8px 20px rgba(225, 29, 72, 0.35);
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: #475569;
+  border: 1.5px solid #cbd5e1;
+}
+
+.btn-outline:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* Renk Semantiği Lejantı (Colorful Semantics Legend) */
+.semantics-legend {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 1.2rem;
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+  border: 1px solid #e2e8f0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-wrap: wrap;
+}
+
+.legend-title {
+  color: #475569;
+  font-family: 'Fredoka', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.dot-subject { background: var(--color-subject-border); }
+.dot-object { background: var(--color-object-border); }
+.dot-verb { background: var(--color-verb-border); }
+
+/* ==========================================================================
+   Mod Seçici & Filtreleme Barı
+   ========================================================================== */
+.controls-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1.6rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 0.8rem;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #64748b;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--primary);
+  background: #f5f3ff;
+}
+
+.tab-btn.active {
+  color: #ffffff;
+  background: var(--primary);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.chip-btn {
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip-btn:hover {
+  background: #e2e8f0;
+}
+
+.chip-btn.active {
+  background: #e0e7ff;
+  border-color: #818cf8;
+  color: #3730a3;
+}
+
+/* Sayaç Rozeti */
+.count-badge {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #4f46e5;
+  background: #eef2ff;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   Cümle Şeritleri Grid / Sayfası (Sentence Strips)
+   ========================================================================== */
+.strips-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.strip-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.strip-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+}
+
+.strip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.strip-category-tag {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.strip-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #475569;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+  transform: scale(1.08);
+}
+
+/* CÜMLE ŞERİDİ KARTLARI (Özne - Nesne - Yüklem) */
+.strip-items-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.strip-items-row.two-items {
+  grid-template-columns: 1fr 1fr;
+  max-width: 750px;
+}
+
+/* Bireysel Kart Kutusu */
+.token-card {
+  border-radius: var(--radius-md);
+  border: 3px solid transparent;
+  padding: 1rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  position: relative;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.token-card:hover {
+  transform: scale(1.02);
+}
+
+/* Renk Kodlu Sınıflar */
+.token-card.type-subject {
+  background: var(--color-subject-bg);
+  border-color: var(--color-subject-border);
+}
+
+.token-card.type-object {
+  background: var(--color-object-bg);
+  border-color: var(--color-object-border);
+}
+
+.token-card.type-verb {
+  background: var(--color-verb-bg);
+  border-color: var(--color-verb-border);
+}
+
+/* Kart Rolü Etiketi (KİM? / NEYİ? / NE YAPTI?) */
+.card-role-tag {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.3px;
+}
+
+.type-subject .card-role-tag {
+  background: var(--color-subject-tag);
+  color: var(--color-subject-text);
+}
+
+.type-object .card-role-tag {
+  background: var(--color-object-tag);
+  color: var(--color-object-text);
+}
+
+.type-verb .card-role-tag {
+  background: var(--color-verb-tag);
+  color: var(--color-verb-text);
+}
+
+/* Görsel Konteyneri */
+.card-media-box {
+  width: 140px;
+  height: 140px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.card-media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-media-box svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Kelime & Ek Yazısı */
+.card-word {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15rem;
+}
+
+.type-subject .card-word { color: var(--color-subject-text); }
+.type-object .card-word { color: var(--color-object-text); }
+.type-verb .card-word { color: var(--color-verb-text); }
+
+/* Şahıs Eki Vurgusu (-m, -n, -k) */
+.verb-suffix {
+  font-weight: 800;
+  text-decoration: underline wavy;
+  text-underline-offset: 3px;
+}
+
+/* Cümlenin Tam Okunuşu Şeridi */
+.strip-footer {
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-left: 5px solid var(--primary);
+}
+
+.sentence-text {
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.sentence-hint {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Kesme Çizgisi İşareti (Makas Kılavuzu) */
+.cut-guide {
+  position: absolute;
+  top: -11px;
+  left: 30px;
+  background: #ffffff;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ==========================================================================
+   İnteraktif Terapi & Cümle Kurma Oyunu Ekranı
+   ========================================================================== */
+.interactive-view {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 2px solid #e0e7ff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.interactive-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.game-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #3730a3;
+}
+
+.game-score-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.star-count {
+  background: #fef3c7;
+  color: #b45309;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+}
+
+/* Hedef Sahne & Soru */
+.game-target-banner {
+  background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #c7d2fe;
+}
+
+.target-prompt {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #4338ca;
+}
+
+/* Boş Bırakılan Cümle Şeridi (Drop Zone / Yerleştirme Alanı) */
+.drop-slots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2.5rem 1rem;
+  background: #f8fafc;
+  border: 3px dashed #cbd5e1;
+  border-radius: var(--radius-lg);
+  min-height: 260px;
+  flex-wrap: wrap;
+}
+
+.slot-box {
+  width: 170px;
+  min-height: 200px;
+  border-radius: var(--radius-md);
+  border: 3px dashed #94a3b8;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  gap: 0.5rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.slot-box.filled {
+  border-style: solid;
+}
+
+.slot-box.slot-subject { border-color: var(--color-subject-border); }
+.slot-box.slot-object { border-color: var(--color-object-border); }
+.slot-box.slot-verb { border-color: var(--color-verb-border); }
+
+.slot-placeholder {
+  color: #94a3b8;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Seçenekler Havuzu (Draggable / Clickable Options) */
+.options-pool {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.options-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.options-cards-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.clickable-token {
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clickable-token:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.clickable-token:active {
+  transform: scale(0.96);
+}
+
+/* Sonuç / Tebrikler Pop-up */
+.success-banner {
+  background: #ecfdf5;
+  border: 2px solid #34d399;
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  text-align: center;
+  color: #065f46;
+  font-size: 1.25rem;
+  font-weight: 700;
+  animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   Flashcard / Kart Kataloğu Modu
+   ========================================================================== */
+.flashcards-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.flashcard-item {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid #e2e8f0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.flashcard-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   PDF & Baskı Önizleme Modal / Çıktı Alanı
+   ========================================================================== */
+.pdf-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.pdf-modal-overlay.active {
+  display: flex;
+}
+
+.pdf-modal-content {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.pdf-modal-header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pdf-modal-body {
+  padding: 1.5rem 1.75rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pdf-options-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.option-card {
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-card:hover {
+  border-color: #94a3b8;
+}
+
+.option-card.selected {
+  border-color: var(--primary);
+  background: #f5f3ff;
+}
+
+.option-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.option-card p {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.pdf-modal-footer {
+  padding: 1.2rem 1.75rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  background: #f8fafc;
+}
+
+/* ==========================================================================
+   Duyarlı (Responsive) Tasarım
+   ========================================================================== */
+@media (max-width: 992px) {
+  .strip-items-row {
+    grid-template-columns: 1fr;
+  }
+  .card-media-box {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding: 0.8rem;
+  }
+  .app-header {
+    padding: 1rem;
+  }
+  .brand-title {
+    font-size: 1.3rem;
+  }
+  .header-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

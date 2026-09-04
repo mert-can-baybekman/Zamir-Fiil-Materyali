@@ -1,0 +1,168 @@
+/* ==========================================================================
+   DİL VE KONUŞMA TERAPİSİ - A4 BASKI VE PDF DIŞA AKTARMA STİLLERİ
+   Cırt Cırtlı Cümle Şeridi ve Flashcard Kesim Standardı
+   ========================================================================== */
+
+@media print {
+  /* Sayfa Yapısı */
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm 8mm 10mm;
+  }
+
+  /* Ekrana Özel Öğeleri Gizle */
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .bg-decorations,
+  .app-header,
+  .controls-card,
+  .interactive-view,
+  .pdf-modal-overlay,
+  .strip-actions,
+  .no-print {
+    display: none !important;
+  }
+
+  .app-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Yazdırma Başlığı & Bilgi Şeridi */
+  .print-page-header {
+    display: block !important;
+    border-bottom: 2px solid #333;
+    padding-bottom: 4mm;
+    margin-bottom: 6mm;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .print-page-header h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #111;
+  }
+
+  .print-page-header p {
+    font-size: 9pt;
+    color: #555;
+  }
+
+  /* Cümle Şeritleri Düzeni - Her sayfaya 3 adet tam şerit sığacak şekilde optimize edildi */
+  .strips-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6mm !important;
+  }
+
+  .strip-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: 2px dashed #475569 !important;
+    border-radius: 12px !important;
+    padding: 4mm 6mm !important;
+    margin-bottom: 4mm !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    position: relative !important;
+  }
+
+  /* Makas Kesim Çizgisi */
+  .cut-guide {
+    display: flex !important;
+    position: absolute !important;
+    top: -9px !important;
+    left: 15mm !important;
+    background: #fff !important;
+    padding: 0 4mm !important;
+    font-size: 8pt !important;
+    color: #475569 !important;
+    font-weight: bold !important;
+  }
+
+  .strip-items-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4mm !important;
+  }
+
+  .strip-items-row.two-items {
+    grid-template-columns: 1fr 1fr !important;
+    max-width: 130mm !important;
+    margin: 0 auto;
+  }
+
+  .token-card {
+    border-width: 2.5pt !important;
+    border-style: solid !important;
+    border-radius: 10px !important;
+    padding: 3mm !important;
+    gap: 2mm !important;
+    box-shadow: none !important;
+  }
+
+  .token-card.type-subject {
+    background-color: #fffbeb !important;
+    border-color: #d97706 !important;
+  }
+
+  .token-card.type-object {
+    background-color: #f0f9ff !important;
+    border-color: #0284c7 !important;
+  }
+
+  .token-card.type-verb {
+    background-color: #fff1f2 !important;
+    border-color: #e11d48 !important;
+  }
+
+  .card-media-box {
+    width: 32mm !important;
+    height: 32mm !important;
+    border-radius: 8px !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+
+  .card-media-box img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .card-word {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+  }
+
+  .card-role-tag {
+    font-size: 7pt !important;
+    padding: 1mm 3mm !important;
+    font-weight: bold !important;
+  }
+
+  .strip-footer {
+    border-left: 4pt solid #4f46e5 !important;
+    background: #f1f5f9 !important;
+    padding: 2mm 4mm !important;
+    margin-top: 2mm !important;
+  }
+
+  .sentence-text {
+    font-size: 12pt !important;
+  }
+
+  /* Her 3 şeritten sonra temiz sayfa kırılımı (İsteğe bağlı veya otomatik) */
+  .page-break-after {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+}
