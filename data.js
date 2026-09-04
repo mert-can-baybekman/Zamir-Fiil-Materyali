@@ -1,4 +1,4 @@
-// 36 Cümlenin Tam Dilbilgisel ve Terapi Veri Tabanı (DKT Standartlarında)
+// 60 Cümlenin Tam Dilbilgisel ve Terapi Veri Tabanı (DKT Standartlarında)
 // Colorful Semantics (Renkli Semantik):
 // Özne (KİM?) -> Sarı/Turuncu
 // Nesne / Yer (NEYİ? / NEREYE?) -> Açık Mavi
@@ -20,7 +20,7 @@ const SENTENCE_DATA = [
     hasObject: true,
     objectType: "nesne",
     personSuffix: "-m",
-    hint: "Kendim yemek yedim."
+    hint: "Kendim çorba/yemek yedim."
   },
   {
     id: "yemek_sen",
@@ -134,7 +134,7 @@ const SENTENCE_DATA = [
     hasObject: true,
     objectType: "nesne",
     personSuffix: "-k",
-    hint: "Birlikte topu paslaştık ve attık."
+    hint: "Birlikte topu attık."
   },
 
   // --- 3. SU İÇMEK ---
@@ -597,20 +597,426 @@ const SENTENCE_DATA = [
     objectType: "nesne",
     personSuffix: "-k",
     hint: "Hava soğuk olduğu için montlarımızı giydik."
+  },
+
+  // ========================================================================
+  // YENİ GENİŞLETİLMİŞ DKT KÜTÜPHANESİ (KULLANICI TALEBİ)
+  // ========================================================================
+
+  // --- 10. KİTAP OKUMAK ---
+  {
+    id: "kitap_ben",
+    category: "kitap",
+    categoryTitle: "Kitap Okumak",
+    subject: "Ben",
+    subjectKey: "ben",
+    object: "kitap",
+    objectKey: "kitap",
+    verb: "okudum",
+    verbKey: "okudum",
+    fullSentence: "Ben kitap okudum",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-m",
+    hint: "Resimli hikaye kitabını ben okudum."
+  },
+  {
+    id: "kitap_sen",
+    category: "kitap",
+    categoryTitle: "Kitap Okumak",
+    subject: "Sen",
+    subjectKey: "sen",
+    object: "kitap",
+    objectKey: "kitap",
+    verb: "okudun",
+    verbKey: "okudun",
+    fullSentence: "Sen kitap okudun",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-n",
+    hint: "Resimli hikaye kitabını sen okudun."
+  },
+  {
+    id: "kitap_o",
+    category: "kitap",
+    categoryTitle: "Kitap Okumak",
+    subject: "O",
+    subjectKey: "o",
+    object: "kitap",
+    objectKey: "kitap",
+    verb: "okudu",
+    verbKey: "okudu",
+    fullSentence: "O kitap okudu",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "ø",
+    hint: "Hikaye kitabını o okudu."
+  },
+  {
+    id: "kitap_biz",
+    category: "kitap",
+    categoryTitle: "Kitap Okumak",
+    subject: "Biz",
+    subjectKey: "biz",
+    object: "kitap",
+    objectKey: "kitap",
+    verb: "okuduk",
+    verbKey: "okuduk",
+    fullSentence: "Biz kitap okuduk",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-k",
+    hint: "Birlikte oturup kitap okuduk."
+  },
+
+  // --- 11. ELMA YEMEK ---
+  {
+    id: "elma_ben",
+    category: "elma",
+    categoryTitle: "Elma Yemek",
+    subject: "Ben",
+    subjectKey: "ben",
+    object: "elma",
+    objectKey: "elma",
+    verb: "yedim",
+    verbKey: "elma_yedim",
+    fullSentence: "Ben elma yedim",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-m",
+    hint: "Kırmızı tatlı elmayı ben yedim."
+  },
+  {
+    id: "elma_sen",
+    category: "elma",
+    categoryTitle: "Elma Yemek",
+    subject: "Sen",
+    subjectKey: "sen",
+    object: "elma",
+    objectKey: "elma",
+    verb: "yedin",
+    verbKey: "elma_yedin",
+    fullSentence: "Sen elma yedin",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-n",
+    hint: "Kırmızı tatlı elmayı sen yedin."
+  },
+  {
+    id: "elma_o",
+    category: "elma",
+    categoryTitle: "Elma Yemek",
+    subject: "O",
+    subjectKey: "o",
+    object: "elma",
+    objectKey: "elma",
+    verb: "yedi",
+    verbKey: "elma_yedi",
+    fullSentence: "O elma yedi",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "ø",
+    hint: "Kırmızı elmayı o yedi."
+  },
+  {
+    id: "elma_biz",
+    category: "elma",
+    categoryTitle: "Elma Yemek",
+    subject: "Biz",
+    subjectKey: "biz",
+    object: "elma",
+    objectKey: "elma",
+    verb: "yedik",
+    verbKey: "elma_yedik",
+    fullSentence: "Biz elma yedik",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-k",
+    hint: "Birlikte elma yedik."
+  },
+
+  // --- 12. SÜT İÇMEK ---
+  {
+    id: "sut_ben",
+    category: "sut",
+    categoryTitle: "Süt İçmek",
+    subject: "Ben",
+    subjectKey: "ben",
+    object: "süt",
+    objectKey: "süt",
+    verb: "içtim",
+    verbKey: "süt_içtim",
+    fullSentence: "Ben süt içtim",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-m",
+    hint: "Bardağımdaki taze sütü ben içtim."
+  },
+  {
+    id: "sut_sen",
+    category: "sut",
+    categoryTitle: "Süt İçmek",
+    subject: "Sen",
+    subjectKey: "sen",
+    object: "süt",
+    objectKey: "süt",
+    verb: "içtin",
+    verbKey: "süt_içtin",
+    fullSentence: "Sen süt içtin",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-n",
+    hint: "Bardağındaki taze sütü sen içtin."
+  },
+  {
+    id: "sut_o",
+    category: "sut",
+    categoryTitle: "Süt İçmek",
+    subject: "O",
+    subjectKey: "o",
+    object: "süt",
+    objectKey: "süt",
+    verb: "içti",
+    verbKey: "süt_içti",
+    fullSentence: "O süt içti",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "ø",
+    hint: "Sütünü o içti."
+  },
+  {
+    id: "sut_biz",
+    category: "sut",
+    categoryTitle: "Süt İçmek",
+    subject: "Biz",
+    subjectKey: "biz",
+    object: "süt",
+    objectKey: "süt",
+    verb: "içtik",
+    verbKey: "süt_içtik",
+    fullSentence: "Biz süt içtik",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-k",
+    hint: "Hep beraber süt içtik."
+  },
+
+  // --- 13. DİŞ FIRÇALAMAK ---
+  {
+    id: "dis_ben",
+    category: "dis",
+    categoryTitle: "Diş Fırçalamak",
+    subject: "Ben",
+    subjectKey: "ben",
+    object: "dişimi",
+    objectKey: "diş",
+    verb: "fırçaladım",
+    verbKey: "fırçaladım",
+    fullSentence: "Ben dişimi fırçaladım",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-m",
+    hint: "Fırçamla dişimi ben temizledim."
+  },
+  {
+    id: "dis_sen",
+    category: "dis",
+    categoryTitle: "Diş Fırçalamak",
+    subject: "Sen",
+    subjectKey: "sen",
+    object: "dişini",
+    objectKey: "diş",
+    verb: "fırçaladın",
+    verbKey: "fırçaladın",
+    fullSentence: "Sen dişini fırçaladın",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-n",
+    hint: "Fırçanla dişini sen temizledin."
+  },
+  {
+    id: "dis_o",
+    category: "dis",
+    categoryTitle: "Diş Fırçalamak",
+    subject: "O",
+    subjectKey: "o",
+    object: "dişini",
+    objectKey: "diş",
+    verb: "fırçaladı",
+    verbKey: "fırçaladı",
+    fullSentence: "O dişini fırçaladı",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "ø",
+    hint: "Dişini o fırçaladı."
+  },
+  {
+    id: "dis_biz",
+    category: "dis",
+    categoryTitle: "Diş Fırçalamak",
+    subject: "Biz",
+    subjectKey: "biz",
+    object: "dişimizi",
+    objectKey: "diş",
+    verb: "fırçaladık",
+    verbKey: "fırçaladık",
+    fullSentence: "Biz dişimizi fırçaladık",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-k",
+    hint: "Birlikte dişlerimizi fırçaladık."
+  },
+
+  // --- 14. EL YIKAMAK ---
+  {
+    id: "el_ben",
+    category: "el",
+    categoryTitle: "El Yıkamak",
+    subject: "Ben",
+    subjectKey: "ben",
+    object: "elimi",
+    objectKey: "sabun",
+    verb: "yıkadım",
+    verbKey: "yıkadım",
+    fullSentence: "Ben elimi yıkadım",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-m",
+    hint: "Sabun ve suyla elimi ben yıkadım."
+  },
+  {
+    id: "el_sen",
+    category: "el",
+    categoryTitle: "El Yıkamak",
+    subject: "Sen",
+    subjectKey: "sen",
+    object: "elini",
+    objectKey: "sabun",
+    verb: "yıkadın",
+    verbKey: "yıkadın",
+    fullSentence: "Sen elini yıkadın",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-n",
+    hint: "Sabun ve suyla elini sen yıkadın."
+  },
+  {
+    id: "el_o",
+    category: "el",
+    categoryTitle: "El Yıkamak",
+    subject: "O",
+    subjectKey: "o",
+    object: "elini",
+    objectKey: "sabun",
+    verb: "yıkadı",
+    verbKey: "yıkadı",
+    fullSentence: "O elini yıkadı",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "ø",
+    hint: "Elini o yıkadı."
+  },
+  {
+    id: "el_biz",
+    category: "el",
+    categoryTitle: "El Yıkamak",
+    subject: "Biz",
+    subjectKey: "biz",
+    object: "elimizi",
+    objectKey: "sabun",
+    verb: "yıkadık",
+    verbKey: "yıkadık",
+    fullSentence: "Biz elimizi yıkadık",
+    hasObject: true,
+    objectType: "nesne",
+    personSuffix: "-k",
+    hint: "Birlikte ellerimizi yıkadık."
+  },
+
+  // --- 15. KOŞMAK (2 Öğeli) ---
+  {
+    id: "kos_ben",
+    category: "kosmak",
+    categoryTitle: "Koşmak",
+    subject: "Ben",
+    subjectKey: "ben",
+    object: null,
+    objectKey: null,
+    verb: "koştum",
+    verbKey: "koştum",
+    fullSentence: "Ben koştum",
+    hasObject: false,
+    objectType: null,
+    personSuffix: "-m",
+    hint: "Hızlıca ben koştum."
+  },
+  {
+    id: "kos_sen",
+    category: "kosmak",
+    categoryTitle: "Koşmak",
+    subject: "Sen",
+    subjectKey: "sen",
+    object: null,
+    objectKey: null,
+    verb: "koştun",
+    verbKey: "koştun",
+    fullSentence: "Sen koştun",
+    hasObject: false,
+    objectType: null,
+    personSuffix: "-n",
+    hint: "Hızlıca sen koştun."
+  },
+  {
+    id: "kos_o",
+    category: "kosmak",
+    categoryTitle: "Koşmak",
+    subject: "O",
+    subjectKey: "o",
+    object: null,
+    objectKey: null,
+    verb: "koştu",
+    verbKey: "koştu",
+    fullSentence: "O koştu",
+    hasObject: false,
+    objectType: null,
+    personSuffix: "ø",
+    hint: "Hızlıca o koştu."
+  },
+  {
+    id: "kos_biz",
+    category: "kosmak",
+    categoryTitle: "Koşmak",
+    subject: "Biz",
+    subjectKey: "biz",
+    object: null,
+    objectKey: null,
+    verb: "koştuk",
+    verbKey: "koştuk",
+    fullSentence: "Biz koştuk",
+    hasObject: false,
+    objectType: null,
+    personSuffix: "-k",
+    hint: "Birlikte yarışarak koştuk."
   }
 ];
 
-// DKT Kategori Listesi
+// DKT Kategori Listesi (15 Kategori)
 const CATEGORIES = [
-  { id: "all", name: "Tüm Eylemler", icon: "✨" },
+  { id: "all", name: "Tüm Eylemler (60)", icon: "✨" },
+  { id: "top", name: "Top Atmak", icon: "⚽" },
   { id: "resim", name: "Resim Yapmak", icon: "🎨" },
   { id: "yemek", name: "Yemek Yemek", icon: "🍲" },
-  { id: "top", name: "Top Atmak", icon: "⚽" },
+  { id: "elma", name: "Elma Yemek", icon: "🍎" },
   { id: "su", name: "Su İçmek", icon: "💧" },
+  { id: "sut", name: "Süt İçmek", icon: "🥛" },
+  { id: "kitap", name: "Kitap Okumak", icon: "📖" },
   { id: "okul", name: "Okula Gitmek", icon: "🏫" },
   { id: "mont", name: "Mont Giymek", icon: "🧥" },
+  { id: "dis", name: "Diş Fırçalamak", icon: "🪥" },
+  { id: "el", name: "El Yıkamak", icon: "🧼" },
   { id: "oturmak", name: "Oturmak", icon: "🪑" },
   { id: "yurumek", name: "Yürümek", icon: "🚶" },
+  { id: "kosmak", name: "Koşmak", icon: "🏃" },
   { id: "ziplamak", name: "Zıplamak", icon: "🦘" }
 ];
 

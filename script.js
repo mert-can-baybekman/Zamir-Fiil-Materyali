@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return catMatch && subjMatch;
     });
 
-    filterCount.textContent = `${filtered.length} Cümle Gösteriliyor (Toplam 36)`;
+    filterCount.textContent = `${filtered.length} Cümle Gösteriliyor (Toplam ${SENTENCE_DATA.length})`;
 
     if (filtered.length === 0) {
       stripsContainer.innerHTML = `
@@ -358,12 +358,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.game.step === 1 && target.hasObject) {
       optionsStepTitle.textContent = `2. Adım: ${target.objectType === 'yer' ? 'Yer' : 'Nesne'} Kartını Seç (${target.objectType === 'yer' ? 'NEREYE?' : 'NEYİ?'})`;
       const objectOptions = [
+        { key: 'top', name: 'topu' },
         { key: 'resim', name: 'resim' },
         { key: 'yemek', name: 'yemek' },
-        { key: 'top', name: 'topu' },
+        { key: 'elma', name: 'elma' },
         { key: 'su', name: 'su' },
+        { key: 'süt', name: 'süt' },
+        { key: 'kitap', name: 'kitap' },
         { key: 'okula', name: 'okula' },
-        { key: 'mont', name: 'mont' }
+        { key: 'mont', name: 'mont' },
+        { key: 'diş', name: 'dişimi' },
+        { key: 'sabun', name: 'elimi' }
       ];
 
       gameOptionsPool.innerHTML = objectOptions.map(opt => `
@@ -494,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Nesneler
-    const objects = ['yemek', 'top', 'su', 'okul', 'resim', 'mont'];
+    const objects = ['top', 'resim', 'yemek', 'elma', 'su', 'süt', 'kitap', 'okula', 'mont', 'diş', 'sabun'];
     objects.forEach(obj => {
       html += `
         <div class="flashcard-item token-card type-object" onclick="window.speakWord('${obj}')">
@@ -507,19 +512,21 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     });
 
-    // Temel Eylemler
+    // Temel Eylemler (15 Eylem Grubu)
     const verbs = [
-      { name: 'yaptım', key: 'yaptim', p: 'ben' },
-      { name: 'yaptın', key: 'yaptin', p: 'sen' },
-      { name: 'yaptık', key: 'yaptik', p: 'biz' },
-      { name: 'yedim', key: 'yedim', p: 'ben' },
       { name: 'attım', key: 'attim', p: 'ben' },
+      { name: 'yaptım', key: 'yaptim', p: 'ben' },
+      { name: 'yedim', key: 'yedim', p: 'ben' },
+      { name: 'okudum', key: 'okudum', p: 'ben' },
       { name: 'içtim', key: 'ictim', p: 'ben' },
       { name: 'gittim', key: 'gittim', p: 'ben' },
+      { name: 'giydim', key: 'giydim', p: 'ben' },
+      { name: 'fırçaladım', key: 'fırçaladım', p: 'ben' },
+      { name: 'yıkadım', key: 'yıkadım', p: 'ben' },
       { name: 'oturdum', key: 'oturdum', p: 'ben' },
       { name: 'yürüdüm', key: 'yurudum', p: 'ben' },
-      { name: 'zıpladım', key: 'zipladim', p: 'ben' },
-      { name: 'giydim', key: 'giydim', p: 'ben' }
+      { name: 'koştum', key: 'koştum', p: 'ben' },
+      { name: 'zıpladım', key: 'zipladim', p: 'ben' }
     ];
 
     verbs.forEach(v => {
@@ -598,19 +605,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const opt = {
       margin: [10, 10, 10, 10],
-      filename: 'Zamir-Fiil-Cumle-Kurma-Materyali-DKT.pdf',
+      filename: 'Zamir-Fiil-Cumle-Kurma-Materyali-DKT-60-Cumle.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
     html2pdf().set(opt).from(element).save().then(() => {
-      btnGeneratePdfDownload.innerHTML = `<span>📥</span> Tek Dosya Olarak PDF İndir (Tüm 36 Cümle)`;
+      btnGeneratePdfDownload.innerHTML = `<span>📥</span> Tek Dosya Olarak PDF İndir (Tüm 60 Cümle)`;
       btnGeneratePdfDownload.disabled = false;
       speak("PDF dosyanız başarıyla indirildi.");
     }).catch(err => {
       console.error(err);
-      btnGeneratePdfDownload.innerHTML = `<span>📥</span> Tek Dosya Olarak PDF İndir (Tüm 36 Cümle)`;
+      btnGeneratePdfDownload.innerHTML = `<span>📥</span> Tek Dosya Olarak PDF İndir (Tüm 60 Cümle)`;
       btnGeneratePdfDownload.disabled = false;
       // Hata durumunda native yazdırmaya yönlendir
       triggerPrint();
