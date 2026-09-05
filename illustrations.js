@@ -1,7 +1,14 @@
 // Dil ve Konuşma Terapisi - Gerçek Hikaye Kitabı Resim Motoru
 // SVG yerine doğrudan yüksek çözünürlüklü sanatsal JPG resimleri kullanılır.
 
+const ASSET_V = 'v=' + Date.now();
+
 const Illustrations = {
+  // Görsel yükleme etiketi (Tarayıcı önbellek sorununu önlemek için versiyonlu)
+  img(src, alt) {
+    return `<img src="${src}?${ASSET_V}" alt="${alt}" class="card-img-thumb" loading="lazy" />`;
+  },
+
   // 1. ÖZNELER (Gerçek AI İllüstrasyonları)
   getSubject(personKey) {
     const map = {
@@ -11,7 +18,7 @@ const Illustrations = {
       'biz': 'assets/images/biz.jpg'
     };
     const src = map[personKey] || 'assets/images/ben.jpg';
-    return `<img src="${src}" alt="${personKey}" class="card-img-thumb" />`;
+    return this.img(src, personKey);
   },
 
   // 2. NESNELER (Gerçek AI İllüstrasyonları)
@@ -26,76 +33,76 @@ const Illustrations = {
     else if (type === 'kitap') src = 'assets/images/resim.jpg';
     else if (type === 'diş' || type === 'sabun') src = 'assets/images/su.jpg';
 
-    return `<img src="${src}" alt="${type}" class="card-img-thumb" />`;
+    return this.img(src, type);
   },
 
   // 3. EYLEMLER (Gerçek AI Sahne Resimleri)
   getAction(actionKey, personKey) {
     // 1. Resim Yapmak (Tamamı AI tarafından özel çizilmiş sahneler)
     if (actionKey.startsWith('yaptı') || actionKey.startsWith('yapti')) {
-      if (personKey === 'ben') return `<img src="assets/images/ben_resim_yaptim.jpg" alt="Ben resim yaptım" class="card-img-thumb" />`;
-      if (personKey === 'sen') return `<img src="assets/images/sen_resim_yaptin.jpg" alt="Sen resim yaptın" class="card-img-thumb" />`;
-      if (personKey === 'biz') return `<img src="assets/images/biz_resim_yaptik.jpg" alt="Biz resim yaptık" class="card-img-thumb" />`;
-      return `<img src="assets/images/o_resim_yapti.jpg" alt="O resim yaptı" class="card-img-thumb" />`;
+      if (personKey === 'ben') return this.img('assets/images/ben_resim_yaptim.jpg', 'Ben resim yaptım');
+      if (personKey === 'sen') return this.img('assets/images/sen_resim_yaptin.jpg', 'Sen resim yaptın');
+      if (personKey === 'biz') return this.img('assets/images/biz_resim_yaptik.jpg', 'Biz resim yaptık');
+      return this.img('assets/images/o_resim_yapti.jpg', 'O resim yaptı');
     }
 
     // 2. Top Atmak
     if (actionKey.startsWith('attı') || actionKey.startsWith('atti')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'attim', 'sen': 'attin', 'o': 'atti', 'biz': 'attik'}[personKey] || 'attim';
-      return `<img src="assets/images/${p}_topu_${v}.jpg" alt="${p} topu attı" class="card-img-thumb" />`;
+      return this.img(`assets/images/${p}_topu_${v}.jpg`, `${p} topu attı`);
     }
 
     // 3. Yemek Yemek
     if (actionKey.startsWith('yedi')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'yedim', 'sen': 'yedin', 'o': 'yedi', 'biz': 'yedik'}[personKey] || 'yedim';
-      return `<img src="assets/images/${p}_yemek_${v}.jpg" alt="${p} yemek yedi" class="card-img-thumb" />`;
+      return this.img(`assets/images/${p}_yemek_${v}.jpg`, `${p} yemek yedi`);
     }
 
     // 4. Su İçmek
     if (actionKey.startsWith('içti') || actionKey.startsWith('icti')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'ictim', 'sen': 'ictin', 'o': 'icti', 'biz': 'ictik'}[personKey] || 'ictim';
-      return `<img src="assets/images/${p}_su_${v}.jpg" alt="${p} su içti" class="card-img-thumb" />`;
+      return this.img(`assets/images/${p}_su_${v}.jpg`, `${p} su içti`);
     }
 
     // 5. Okula Gitmek
     if (actionKey.startsWith('gitti')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'gittim', 'sen': 'gittin', 'o': 'gitti', 'biz': 'gittik'}[personKey] || 'gittim';
-      return `<img src="assets/images/${p}_okula_${v}.jpg" alt="${p} okula gitti" class="card-img-thumb" />`;
+      return this.img(`assets/images/${p}_okula_${v}.jpg`, `${p} okula gitti`);
     }
 
     // 6. Mont Giymek
     if (actionKey.startsWith('giyd')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'giydim', 'sen': 'giydin', 'o': 'giydi', 'biz': 'giydik'}[personKey] || 'giydim';
-      return `<img src="assets/images/${p}_mont_${v}.jpg" alt="${p} mont giydi" class="card-img-thumb" />`;
+      return this.img(`assets/images/${p}_mont_${v}.jpg`, `${p} mont giydi`);
     }
 
     // 7. Oturmak
     if (actionKey.startsWith('oturd')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'oturdum', 'sen': 'oturdun', 'o': 'oturdu', 'biz': 'oturduk'}[personKey] || 'oturdum';
-      return `<img src="assets/images/${p}_${v}.jpg" alt="${p} oturdu" class="card-img-thumb" />`;
+      return this.img(`assets/images/${p}_${v}.jpg`, `${p} oturdu`);
     }
 
     // 8. Yürümek
     if (actionKey.startsWith('yürüd') || actionKey.startsWith('yurud')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'yurudum', 'sen': 'yurudun', 'o': 'yurudu', 'biz': 'yuruduk'}[personKey] || 'yurudum';
-      return `<img src="assets/images/${p}_${v}.jpg" alt="${p} yürüdü" class="card-img-thumb" />`;
+      return this.img(`assets/images/${p}_${v}.jpg`, `${p} yürüdü`);
     }
 
     // 9. Zıplamak
     if (actionKey.startsWith('zıplad') || actionKey.startsWith('ziplad')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'zipladim', 'sen': 'zipladin', 'o': 'zipladi', 'biz': 'zipladik'}[personKey] || 'zipladim';
-      return `<img src="assets/images/${p}_${v}.jpg" alt="${p} zıpladı" class="card-img-thumb" />`;
+      return this.img(`assets/images/${p}_${v}.jpg`, `${p} zıpladı`);
     }
 
     // Varsayılan
-    return `<img src="assets/images/ben_resim_yaptim.jpg" alt="Eylem" class="card-img-thumb" />`;
+    return this.img('assets/images/ben_resim_yaptim.jpg', 'Eylem');
   }
 };
