@@ -1,5 +1,6 @@
 # Zamir & Fiil Cümle Kurma Materyali - Dil ve Konuşma Terapisi (DKT)
 
+**Hazırlayan:** DKT Meryem Çiçek  
 Bu materyal, anaokulu ve erken çocukluk dönemindeki çocukların **kişi zamirleri (Ben, Sen, O, Biz)** ile **geçmiş zaman çekimli eylemleri (-dim, -din, -di, -dik)** görsel, yapılandırılmış ve eğlenceli bir yaklaşımla öğrenmesi amacıyla **Dil ve Konuşma Terapistleri (DKT)** için özel olarak tasarlanmıştır.
 
 ---

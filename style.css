@@ -169,6 +169,22 @@ h1, h2, h3, h4, .brand-title, .strip-card-title, .card-word {
   font-weight: 600;
 }
 
+.therapist-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+  padding: 0.32rem 0.85rem;
+  background: #eef2ff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.08);
+}
+
 /* Üst Eylem Butonları */
 .header-actions {
   display: flex;
@@ -923,4 +939,26 @@ h1, h2, h3, h4, .brand-title, .strip-card-title, .card-word {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* ==========================================================================
+   Alt Bilgi (Footer)
+   ========================================================================== */
+.app-footer {
+  margin-top: 3rem;
+  padding: 2rem 1rem 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: center;
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+.footer-content strong {
+  color: #1e293b;
+}
+
+.footer-sub {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 0.35rem;
 }

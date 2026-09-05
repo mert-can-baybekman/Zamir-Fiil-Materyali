@@ -1,4 +1,6 @@
-// 60 Cümlenin Tam Dilbilgisel ve Terapi Veri Tabanı (DKT Standartlarında)
+// Dil ve Konuşma Terapisi (DKT) - Zamir & Fiil Cümle Kurma Materyali
+// Hazırlayan: DKT Meryem Çiçek
+// 60 Cümlenin Tam Dilbilgisel ve Terapi Veri Tabanı
 // Colorful Semantics (Renkli Semantik):
 // Özne (KİM?) -> Sarı/Turuncu
 // Nesne / Yer (NEYİ? / NEREYE?) -> Açık Mavi
