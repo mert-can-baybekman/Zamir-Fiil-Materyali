@@ -25,12 +25,14 @@ const Illustrations = {
   getNesne(type) {
     let src = 'assets/images/resim.jpg';
     if (type === 'top' || type === 'topu') src = 'assets/images/top.jpg';
-    else if (type === 'yemek' || type === 'elma') src = 'assets/images/yemek.jpg';
-    else if (type === 'su' || type === 'süt' || type === 'sut') src = 'assets/images/su.jpg';
+    else if (type === 'yemek') src = 'assets/images/yemek.jpg';
+    else if (type === 'elma') src = 'assets/images/elma.jpg';
+    else if (type === 'süt' || type === 'sut') src = 'assets/images/sut.jpg';
+    else if (type === 'su') src = 'assets/images/su.jpg';
     else if (type === 'okul' || type === 'okula') src = 'assets/images/okul.jpg';
     else if (type === 'resim') src = 'assets/images/resim.jpg';
     else if (type === 'mont') src = 'assets/images/mont.jpg';
-    else if (type === 'kitap') src = 'assets/images/resim.jpg';
+    else if (type === 'kitap') src = 'assets/images/kitap.jpg';
     else if (type === 'diş' || type === 'sabun') src = 'assets/images/su.jpg';
 
     return this.img(src, type);
@@ -38,7 +40,7 @@ const Illustrations = {
 
   // 3. EYLEMLER (Gerçek AI Sahne Resimleri)
   getAction(actionKey, personKey) {
-    // 1. Resim Yapmak (Tamamı AI tarafından özel çizilmiş sahneler)
+    // 1. Resim Yapmak
     if (actionKey.startsWith('yaptı') || actionKey.startsWith('yapti')) {
       if (personKey === 'ben') return this.img('assets/images/ben_resim_yaptim.jpg', 'Ben resim yaptım');
       if (personKey === 'sen') return this.img('assets/images/sen_resim_yaptin.jpg', 'Sen resim yaptın');
@@ -53,14 +55,19 @@ const Illustrations = {
       return this.img(`assets/images/${p}_topu_${v}.jpg`, `${p} topu attı`);
     }
 
-    // 3. Yemek Yemek
+    // 3. Yemek Yemek / Elma Yemek
+    if (actionKey.startsWith('elma_yedi')) {
+      const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
+      const v = {'ben': 'yedim', 'sen': 'yedin', 'o': 'yedi', 'biz': 'yedik'}[personKey] || 'yedim';
+      return this.img(`assets/images/${p}_elma_${v}.jpg`, `${p} elma yedi`);
+    }
     if (actionKey.startsWith('yedi')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'yedim', 'sen': 'yedin', 'o': 'yedi', 'biz': 'yedik'}[personKey] || 'yedim';
       return this.img(`assets/images/${p}_yemek_${v}.jpg`, `${p} yemek yedi`);
     }
 
-    // 4. Su İçmek
+    // 4. Su İçmek / Süt İçmek
     if (actionKey.startsWith('içti') || actionKey.startsWith('icti')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'ictim', 'sen': 'ictin', 'o': 'icti', 'biz': 'ictik'}[personKey] || 'ictim';
@@ -100,6 +107,13 @@ const Illustrations = {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'zipladim', 'sen': 'zipladin', 'o': 'zipladi', 'biz': 'zipladik'}[personKey] || 'zipladim';
       return this.img(`assets/images/${p}_${v}.jpg`, `${p} zıpladı`);
+    }
+
+    // 10. Kitap Okumak
+    if (actionKey.startsWith('okud')) {
+      const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
+      const v = {'ben': 'okudum', 'sen': 'okudun', 'o': 'okudu', 'biz': 'okuduk'}[personKey] || 'okudum';
+      return this.img(`assets/images/${p}_kitap_${v}.jpg`, `${p} kitap okudu`);
     }
 
     // Varsayılan
