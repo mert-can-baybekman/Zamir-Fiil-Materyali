@@ -33,7 +33,8 @@ const Illustrations = {
     else if (type === 'resim') src = 'assets/images/resim.jpg';
     else if (type === 'mont') src = 'assets/images/mont.jpg';
     else if (type === 'kitap') src = 'assets/images/kitap.jpg';
-    else if (type === 'diş' || type === 'sabun') src = 'assets/images/su.jpg';
+    else if (type === 'diş' || type === 'dis') src = 'assets/images/dis.jpg';
+    else if (type === 'sabun') src = 'assets/images/sabun.jpg';
 
     return this.img(src, type);
   },
@@ -68,6 +69,11 @@ const Illustrations = {
     }
 
     // 4. Su İçmek / Süt İçmek
+    if (actionKey.includes('süt') || actionKey.includes('sut')) {
+      const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
+      const v = {'ben': 'ictim', 'sen': 'ictin', 'o': 'icti', 'biz': 'ictik'}[personKey] || 'ictim';
+      return this.img(`assets/images/${p}_sut_${v}.jpg`, `${p} süt içti`);
+    }
     if (actionKey.startsWith('içti') || actionKey.startsWith('icti')) {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'ictim', 'sen': 'ictin', 'o': 'icti', 'biz': 'ictik'}[personKey] || 'ictim';
@@ -114,6 +120,29 @@ const Illustrations = {
       const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
       const v = {'ben': 'okudum', 'sen': 'okudun', 'o': 'okudu', 'biz': 'okuduk'}[personKey] || 'okudum';
       return this.img(`assets/images/${p}_kitap_${v}.jpg`, `${p} kitap okudu`);
+    }
+
+    // 11. Diş Fırçalamak
+    if (actionKey.startsWith('fırçalad') || actionKey.startsWith('fircalad')) {
+      if (personKey === 'ben') return this.img('assets/images/ben_disimi_fircaladim.jpg', 'Ben dişimi fırçaladım');
+      if (personKey === 'sen') return this.img('assets/images/sen_disini_fircaladin.jpg', 'Sen dişini fırçaladın');
+      if (personKey === 'biz') return this.img('assets/images/biz_disimizi_fircaladik.jpg', 'Biz dişimizi fırçaladık');
+      return this.img('assets/images/o_disini_fircaladi.jpg', 'O dişini fırçaladı');
+    }
+
+    // 12. El Yıkamak
+    if (actionKey.startsWith('yıkad') || actionKey.startsWith('yikad')) {
+      if (personKey === 'ben') return this.img('assets/images/ben_elimi_yikadim.jpg', 'Ben elimi yıkadım');
+      if (personKey === 'sen') return this.img('assets/images/sen_elini_yikadin.jpg', 'Sen elini yıkadın');
+      if (personKey === 'biz') return this.img('assets/images/biz_elimizi_yikadik.jpg', 'Biz elimizi yıkadık');
+      return this.img('assets/images/o_elini_yikadi.jpg', 'O elini yıkadı');
+    }
+
+    // 13. Koşmak
+    if (actionKey.startsWith('koşt') || actionKey.startsWith('kost')) {
+      const p = {'ben': 'ben', 'sen': 'sen', 'o': 'o', 'biz': 'biz'}[personKey] || 'ben';
+      const v = {'ben': 'kostum', 'sen': 'kostun', 'o': 'kostu', 'biz': 'kostuk'}[personKey] || 'kostum';
+      return this.img(`assets/images/${p}_${v}.jpg`, `${p} koştu`);
     }
 
     // Varsayılan
